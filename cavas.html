@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<canvas id="canvas" width="1024"  height="768" >
+		
+	</canvas>
+	
+	<script type="text/javascript">
+		var san=[
+			{points:[[100,100],[400,100],[400,150],[100,150],[100,100]], color:"red"},
+			{points:[[100,200],[400,200],[400,250],[100,250],[100,200]], color:"green"},
+			{points:[[100,300],[400,300],[400,350],[100,350],[100,300]], color:"blue"}
+		];
+		
+		window.onload = function() {
+			var canvas = document.getElementById("canvas");
+			canvas.width = 800;
+			canvas.height = 800;
+			var context = canvas.getContext("2d");
+			for ( var i=0; i<san.length; i++ )
+				drow(san[i], context);
+		}
+		
+		var drow = function(piece, cxt) {
+			cxt.beginPath();
+			cxt.moveTo(piece.points[0][0], piece.points[0][1]);
+			for (var i=1; i<piece.points.length; i++)
+				cxt.lineTo(piece.points[i][0], piece.points[i][1]);
+			cxt.closePath();
+			
+			cxt.fillStyle = piece.color;
+			cxt.fill();
+			
+			cxt.strokeStyle = "blcak"
+			cxt.lineWidth = 3;
+			cxt.stroke();
+		}
+	</script>
+</html>
